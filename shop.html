@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZestMarket | All Products</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background: #f8fafc; color: #334155; line-height: 1.6; }
+        header { background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 15px 20px; position: sticky; top: 0; z-index: 1000; }
+        .nav-container { max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { color: #0f172a; font-size: 24px; font-weight: 800; text-decoration: none; }
+        .logo span { color: #2563eb; }
+        
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { color: #64748b; text-decoration: none; margin-right: 20px; font-weight: 600; font-size: 14px; }
+        .nav-links a.active { color: #2563eb; }
+        .btn-nav { background: #2563eb; color: #ffffff; padding: 8px 18px; text-decoration: none; border-radius: 20px; font-weight: 600; font-size: 13px; }
+        
+        .section-wrap { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .section-wrap h2 { font-size: 24px; color: #0f172a; font-weight: 800; margin-bottom: 20px; text-align: left; border-left: 4px solid #2563eb; padding-left: 10px; }
+        
+        /* Interactive Checkout Counter Block */
+        .sales-bar { background: #2563eb; color: white; padding: 15px; border-radius: 12px; font-size: 18px; font-weight: bold; margin-bottom: 40px; text-align: center; position: sticky; top: 80px; z-index: 900; cursor: pointer; transition: background 0.3s; }
+        .sales-bar:hover { background: #1d4ed8; }
+        
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px; margin-bottom: 50px; }
+        .product-card { background: #ffffff; border-radius: 16px; border: 1px solid #e2e8f0; padding: 15px; text-align: left; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .product-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 12px; }
+        .tag { background: #fef08a; color: #854d0e; font-size: 11px; padding: 3px 8px; border-radius: 10px; font-weight: bold; display: inline-block; margin-bottom: 8px; }
+        .tag.blue { background: #dbeafe; color: #1e40af; }
+        .product-card h4 { margin: 0 0 5px 0; color: #0f172a; font-size: 16px; }
+        .product-card p { color: #64748b; font-size: 13px; margin: 0 0 12px 0; }
+        .price-row { display: flex; justify-content: space-between; align-items: center; }
+        .price { font-weight: 800; font-size: 18px; color: #0f172a; }
+        .btn-buy { background: #2563eb; color: white; border: none; padding: 8px 16px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 12px; }
+        
+        footer { background: #ffffff; color: #64748b; text-align: center; padding: 30px; margin-top: 80px; border-top: 1px solid #e2e8f0; }
+
+        /* Fixed Column Direction Mobile Alignment Rules */
+        @media (max-width: 768px) {
+            header { padding: 15px 10px; }
+            .nav-container { flex-direction: column !important; text-align: center; gap: 15px !important; }
+            .nav-links { flex-direction: column !important; align-items: center !important; width: 100% !important; gap: 12px !important; }
+            .nav-links a { margin-right: 0 !important; width: 100%; text-align: center; margin-bottom: 5px; }
+            .btn-nav { display: block !important; width: 100% !important; max-width: 260px; text-align: center; box-sizing: border-box !important; }
+            .sales-bar { font-size: 14px; top: 195px; margin-bottom: 25px; }
+            .section-wrap h2 { font-size: 20px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Zest<span>Market</span></a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="shop.html" class="active">Shop Catalogue</a>
+            </div>
+            <a href="https://199benji.github.io/Benjamin_Miracle_Uduak_AK22-PHS-CSC-013_Ncentric1/" class="btn-nav">← Back to Portfolio</a>
+        </div>
+    </header>
+
+    <div class="section-wrap">
+        <div class="sales-bar" onclick="routeToPayment()">Active Basket Balance: <span id="cart-total">0</span> NGN (Click to Checkout)</div>
+
+        <h2>Trending Fashion & Apparel</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <span class="tag">Unisex</span>
+                <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=400" alt="Tshirt">
+                <h4>Classic White Cotton Tee</h4>
+                <p>Minimalist premium weight organic cotton shirt.</p>
+                <div class="price-row">
+                    <div class="price">7,000 NGN</div>
+                    <button class="btn-buy" onclick="calcTotal(7000)">Buy now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <span class="tag">Winter</span>
+                <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400" alt="Jacket">
+                <h4>Slim-Fit Leather Jacket</h4>
+                <p>Vintage windproof street wear outerwear shield.</p>
+                <div class="price-row">
+                    <div class="price">32,000 NGN</div>
+                    <button class="btn-buy" onclick="calcTotal(32000)">Buy now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <span class="tag">Accessories</span>
+                <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?w=400" alt="Watch">
+                <h4>Minimalist Quartz Watch</h4>
+                <p>Genuine leather strap sleek analog dial wear.</p>
+                <div class="price-row">
+                    <div class="price">15,000 NGN</div>
+                    <button class="btn-buy" onclick="calcTotal(15000)">Buy now</button>
+                </div>
+            </div>
+        </div>
+
+        <h2>Furniture & Home Essentials</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <span class="tag blue">Comfort</span>
+                <img src="https://images.unsplash.com/photo-1503602642458-232111445657?w=400" alt="Chair">
+                <h4>Ergonomic Wooden Stool</h4>
+                <p>Nordic style polished timber structural seating.</p>
+                <div class="price-row">
+                    <div class="price">18,000 NGN</div>
+                    <button class="btn-buy" onclick="calcTotal(18000)">Buy now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <span class="tag blue">Office</span>
+                <img src="https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=400" alt="Desk Lamp">
+                <h4>Adjustable LED Desk Lamp</h4>
+                <p>Eye-protection dimmable table reading source.</p>
+                <div class="price-row">
+                    <div class="price">11,500 NGN</div>
+                    <button class="btn-buy" onclick="calcTotal(11500)">Buy now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <span class="tag blue">Decor</span>
+                <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=400" alt="Vase">
+                <h4>Ceramic Geometric Vase</h4>
+                <p>Minimalist matte finish flower pottery stand.</p>
+                <div class="price-row">
+                    <div class="price">6,500 NGN</div>
+                    <button class="btn-buy" onclick="calcTotal(6500)">Buy now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>&copy; 2026 ZestMarket Retail Labs. Multi-view implementation framework.</footer>
+
+    <script>
+        let total = 0;
+        function calcTotal(val) {
+            total += val;
+            document.getElementById('cart-total').innerText = total.toLocaleString();
+        }
+        
+        // Checkout string extraction function
+        function routeToPayment() {
+            if (total === 0) {
+                alert("Your shopping cart balance is empty. Please select products first.");
+                return;
+            }
+            window.location.href = "checkout.html?amount=" + total;
+        }
+    </script>
+</body>
+</html>
