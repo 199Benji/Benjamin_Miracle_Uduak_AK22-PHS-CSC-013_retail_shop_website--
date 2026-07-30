@@ -22,10 +22,40 @@
         .section-wrap { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
         .section-wrap h2 { font-size: 24px; color: #0f172a; font-weight: 800; margin-bottom: 20px; text-align: left; border-left: 4px solid #2563eb; padding-left: 10px; }
         
-        /* Responsive Interactive Balance Counter Widget */
-        .sales-bar { background: #2563eb; color: white; padding: 15px; border-radius: 12px; font-size: 18px; font-weight: bold; margin-bottom: 40px; text-align: center; position: sticky; top: 80px; z-index: 900; cursor: pointer; transition: background 0.3s; }
-        .sales-bar:hover { background: #1d4ed8; }
+        /* Interactive Sticky Cart Bar */
+        .sales-bar { background: #2563eb; color: white; padding: 15px 20px; border-radius: 12px; font-size: 16px; font-weight: bold; margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 80px; z-index: 900; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); }
+        .sales-bar-info { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+        .btn-checkout-action { background: #ffffff; color: #2563eb; border: none; padding: 8px 16px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 13px; transition: background 0.2s; }
+        .btn-checkout-action:hover { background: #f1f5f9; }
+
+        /* Slide-out Cart Drawer Overlay */
+        .cart-drawer-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); z-index: 2000; display: none; justify-content: flex-end; transition: opacity 0.3s; }
+        .cart-drawer-overlay.active { display: flex; }
+        .cart-drawer { background: #ffffff; width: 100%; max-width: 400px; height: 100%; padding: 25px; box-sizing: border-box; display: flex; flex-direction: column; box-shadow: -5px 0 25px rgba(0,0,0,0.15); animation: slideIn 0.3s ease; }
         
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 20px; }
+        .cart-header h3 { margin: 0; color: #0f172a; font-size: 20px; }
+        .close-drawer { background: none; border: none; font-size: 20px; cursor: pointer; color: #64748b; }
+        
+        .cart-items-list { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; }
+        .cart-item-row { display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 12px; border-radius: 10px; border: 1px solid #e2e8f0; }
+        .cart-item-info h4 { margin: 0 0 4px 0; font-size: 14px; color: #0f172a; }
+        .cart-item-info p { margin: 0; font-size: 12px; color: #64748b; }
+        .cart-item-controls { display: flex; align-items: center; gap: 10px; }
+        .qty-btn { background: #e2e8f0; border: none; width: 24px; height: 24px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 12px; display: flex; align-items: center; justify-content: center; }
+        .qty-btn:hover { background: #cbd5e1; }
+        .remove-item { color: #ef4444; background: none; border: none; cursor: pointer; font-size: 13px; font-weight: 600; padding: 0; }
+
+        .cart-footer { border-top: 1px solid #e2e8f0; padding-top: 20px; display: flex; flex-direction: column; gap: 15px; }
+        .cart-total-row { display: flex; justify-content: space-between; font-size: 18px; font-weight: 800; color: #0f172a; }
+        .btn-proceed { background: #2563eb; color: white; border: none; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 15px; text-align: center; width: 100%; transition: background 0.3s; }
+        .btn-proceed:hover { background: #1d4ed8; }
+
         .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; margin-bottom: 50px; }
         .product-card { background: #ffffff; border-radius: 16px; border: 1px solid #e2e8f0; padding: 15px; text-align: left; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
         .product-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 12px; }
@@ -35,7 +65,8 @@
         .product-card p { color: #64748b; font-size: 13px; margin: 0 0 12px 0; }
         .price-row { display: flex; justify-content: space-between; align-items: center; }
         .price { font-weight: 800; font-size: 18px; color: #0f172a; }
-        .btn-buy { background: #2563eb; color: white; border: none; padding: 8px 16px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 12px; }
+        .btn-buy { background: #2563eb; color: white; border: none; padding: 8px 16px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 12px; transition: background 0.2s; }
+        .btn-buy:hover { background: #1d4ed8; }
         
         footer { background: #ffffff; color: #64748b; text-align: center; padding: 30px; margin-top: 80px; border-top: 1px solid #e2e8f0; }
 
@@ -45,8 +76,9 @@
             .nav-container { flex-direction: column !important; text-align: center; gap: 15px !important; }
             .nav-links { flex-direction: column !important; align-items: center !important; width: 100% !important; gap: 12px !important; }
             .btn-shop, .btn-nav { display: block !important; width: 100% !important; max-width: 250px; box-sizing: border-box !important; }
-            .sales-bar { font-size: 14px; top: 195px; margin-bottom: 25px; }
+            .sales-bar { font-size: 14px; top: 195px; margin-bottom: 25px; flex-direction: column; gap: 10px; text-align: center; }
             .section-wrap h2 { font-size: 20px; text-align: center; }
+            .cart-drawer { max-width: 100%; }
         }
     </style>
 </head>
@@ -63,7 +95,13 @@
     </header>
 
     <div class="section-wrap">
-        <div class="sales-bar" onclick="routeToPayment()">Active Basket Balance: <span id="cart-total">0</span> NGN (Click to Checkout)</div>
+        <!-- Interactive Cart Bar Widget -->
+        <div class="sales-bar">
+            <div class="sales-bar-info" onclick="toggleCartDrawer()">
+                <span>🛒 Cart Bag: <strong id="cart-count">0</strong> items | Total: <strong id="cart-total">0</strong> NGN</span>
+            </div>
+            <button class="btn-checkout-action" onclick="toggleCartDrawer()">View Cart Drawer</button>
+        </div>
 
         <h2>Trending Fashion & Apparel</h2>
         <div class="product-grid">
@@ -74,7 +112,7 @@
                 <p>Minimalist premium weight organic cotton shirt.</p>
                 <div class="price-row">
                     <div class="price">7,000 NGN</div>
-                    <button class="btn-buy" onclick="calcTotal(7000)">Buy now</button>
+                    <button class="btn-buy" onclick="addToCart('Classic White Cotton Tee', 7000)">Add to cart</button>
                 </div>
             </div>
             <div class="product-card">
@@ -84,7 +122,7 @@
                 <p>Vintage windproof street wear outerwear shield.</p>
                 <div class="price-row">
                     <div class="price">32,000 NGN</div>
-                    <button class="btn-buy" onclick="calcTotal(32000)">Buy now</button>
+                    <button class="btn-buy" onclick="addToCart('Slim-Fit Leather Jacket', 32000)">Add to cart</button>
                 </div>
             </div>
             <div class="product-card">
@@ -94,7 +132,7 @@
                 <p>Genuine leather strap sleek analog dial wear.</p>
                 <div class="price-row">
                     <div class="price">15,000 NGN</div>
-                    <button class="btn-buy" onclick="calcTotal(15000)">Buy now</button>
+                    <button class="btn-buy" onclick="addToCart('Minimalist Quartz Watch', 15000)">Add to cart</button>
                 </div>
             </div>
         </div>
@@ -108,7 +146,7 @@
                 <p>Nordic style polished timber structural seating.</p>
                 <div class="price-row">
                     <div class="price">18,000 NGN</div>
-                    <button class="btn-buy" onclick="calcTotal(18000)">Buy now</button>
+                    <button class="btn-buy" onclick="addToCart('Ergonomic Wooden Stool', 18000)">Add to cart</button>
                 </div>
             </div>
             <div class="product-card">
@@ -118,7 +156,7 @@
                 <p>Eye-protection dimmable table reading source.</p>
                 <div class="price-row">
                     <div class="price">11,500 NGN</div>
-                    <button class="btn-buy" onclick="calcTotal(11500)">Buy now</button>
+                    <button class="btn-buy" onclick="addToCart('Adjustable LED Desk Lamp', 11500)">Add to cart</button>
                 </div>
             </div>
             <div class="product-card">
@@ -128,8 +166,29 @@
                 <p>Minimalist matte finish flower pottery stand.</p>
                 <div class="price-row">
                     <div class="price">6,500 NGN</div>
-                    <button class="btn-buy" onclick="calcTotal(6500)">Buy now</button>
+                    <button class="btn-buy" onclick="addToCart('Ceramic Geometric Vase', 6500)">Add to cart</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide-Out Cart Drawer Component -->
+    <div class="cart-drawer-overlay" id="cartDrawer" onclick="handleOverlayClick(event)">
+        <div class="cart-drawer">
+            <div class="cart-header">
+                <h3>Your Shopping Bag</h3>
+                <button class="close-drawer" onclick="toggleCartDrawer()">✕</button>
+            </div>
+            <div class="cart-items-list" id="cartItemsList">
+                <!-- Dynamically injected cart items -->
+                <div style="text-align: center; color: #94a3b8; margin-top: 40px; font-size: 14px;">Your cart is currently empty.</div>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total-row">
+                    <span>Subtotal:</span>
+                    <span id="drawer-total">0 NGN</span>
+                </div>
+                <button class="btn-proceed" onclick="routeToPayment()">Proceed to Checkout</button>
             </div>
         </div>
     </div>
@@ -137,14 +196,77 @@
     <footer>&copy; 2026 ZestMarket Retail Labs. Multi-view implementation framework.</footer>
 
     <script>
-        let total = 0;
-        function calcTotal(val) {
-            total += val;
-            document.getElementById('cart-total').innerText = total.toLocaleString();
+        let cart = [];
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            updateCartUI();
         }
 
-        // Re-added script state router to feed checkout parameter data logs
+        function updateQuantity(name, change) {
+            const item = cart.find(i => i.name === name);
+            if (item) {
+                item.qty += change;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.name !== name);
+                }
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            let totalItems = 0;
+            let totalPrice = 0;
+            const itemsListContainer = document.getElementById('cartItemsList');
+
+            if (cart.length === 0) {
+                itemsListContainer.innerHTML = '<div style="text-align: center; color: #94a3b8; margin-top: 40px; font-size: 14px;">Your cart is currently empty.</div>';
+            } else {
+                itemsListContainer.innerHTML = '';
+                cart.forEach(item => {
+                    totalItems += item.qty;
+                    totalPrice += item.price * item.qty;
+
+                    itemsListContainer.innerHTML += `
+                        <div class="cart-item-row">
+                            <div class="cart-item-info">
+                                <h4>${item.name}</h4>
+                                <p>${item.price.toLocaleString()} NGN each</p>
+                            </div>
+                            <div class="cart-item-controls">
+                                <button class="qty-btn" onclick="updateQuantity('${item.name}', -1)">-</button>
+                                <span style="font-size: 13px; font-weight: bold;">${item.qty}</span>
+                                <button class="qty-btn" onclick="updateQuantity('${item.name}', 1)">+</button>
+                                <button class="remove-item" onclick="updateQuantity('${item.name}', -${item.qty})">🗑️</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            document.getElementById('cart-count').innerText = totalItems;
+            document.getElementById('cart-total').innerText = totalPrice.toLocaleString();
+            document.getElementById('drawer-total').innerText = totalPrice.toLocaleString() + ' NGN';
+        }
+
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cartDrawer');
+            drawer.classList.toggle('active');
+        }
+
+        function handleOverlayClick(event) {
+            if (event.target === event.currentTarget) {
+                toggleCartDrawer();
+            }
+        }
+
         function routeToPayment() {
+            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
             if (total === 0) {
                 alert("Your shopping cart balance is empty. Please select products first.");
                 return;
