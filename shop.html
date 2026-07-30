@@ -107,7 +107,8 @@
         <div class="product-grid">
             <div class="product-card">
                 <span class="tag">Power Bank</span>
-                <img src="https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400" alt="Power Bank">                <h4>20,000mAh Fast-Charge Power Bank</h4>
+                <img src="https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400" alt="Power Bank">
+                <h4>20,000mAh Fast-Charge Power Bank</h4>
                 <p>Dual USB-C PD output with LED digital battery indicator.</p>
                 <div class="price-row">
                     <div class="price">24,500 NGN</div>
@@ -167,6 +168,34 @@
                     <div class="price">19,500 NGN</div>
                     <button class="btn-buy" onclick="addToCart('Portable Bluetooth Speaker', 19500)">Add to cart</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION: METRIC & LENGTH CONVERTER UTILITY -->
+    <div class="section-wrap">
+        <h2>📦 Product Dimension & Unit Converter</h2>
+        <div style="background: #ffffff; padding: 25px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); max-width: 600px;">
+            <p style="color: #64748b; font-size: 13px; margin-top: 0;">Convert cable lengths, item specs, or package dimensions for your order:</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div>
+                    <label style="display: block; font-size: 12px; font-weight: 700; color: #64748b; margin-bottom: 6px; text-transform: uppercase;">Select Conversion</label>
+                    <select id="conversionType" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; background: #fff;">
+                        <option value="cm_to_m">Centimeters (cm) ➔ Meters (m)</option>
+                        <option value="km_to_m">Kilometers (km) ➔ Meters (m)</option>
+                        <option value="kg_to_g">Kilograms (kg) ➔ Grams (g)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label style="display: block; font-size: 12px; font-weight: 700; color: #64748b; margin-bottom: 6px; text-transform: uppercase;">Enter Value</label>
+                    <input type="number" id="unitInputValue" placeholder="e.g. 150" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; box-sizing: border-box; outline: none;">
+                </div>
+
+                <button type="button" onclick="convertMetricUnit()" style="background: #2563eb; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 14px;">Convert Unit</button>
+
+                <div id="conversionResult" style="margin-top: 10px; padding: 12px; background: #f1f5f9; border-radius: 8px; font-weight: 700; color: #0f172a; text-align: center; display: none;"></div>
             </div>
         </div>
     </div>
@@ -271,6 +300,37 @@
                 return;
             }
             window.location.href = "checkout.html?amount=" + total;
+        }
+
+        function convertMetricUnit() {
+            const type = document.getElementById('conversionType').value;
+            const inputVal = parseFloat(document.getElementById('unitInputValue').value);
+            const resultDiv = document.getElementById('conversionResult');
+
+            if (isNaN(inputVal)) {
+                resultDiv.style.display = "block";
+                resultDiv.style.color = "#ef4444";
+                resultDiv.innerText = "Please enter a valid number to convert.";
+                return;
+            }
+
+            let converted = 0;
+            let unitLabel = "";
+
+            if (type === "cm_to_m") {
+                converted = inputVal / 100;
+                unitLabel = `${inputVal} cm = ${converted} m`;
+            } else if (type === "km_to_m") {
+                converted = inputVal * 1000;
+                unitLabel = `${inputVal} km = ${converted.toLocaleString()} m`;
+            } else if (type === "kg_to_g") {
+                converted = inputVal * 1000;
+                unitLabel = `${inputVal} kg = ${converted.toLocaleString()} g`;
+            }
+
+            resultDiv.style.display = "block";
+            resultDiv.style.color = "#2563eb";
+            resultDiv.innerHTML = `Result: <span>${unitLabel}</span>`;
         }
     </script>
 </body>
