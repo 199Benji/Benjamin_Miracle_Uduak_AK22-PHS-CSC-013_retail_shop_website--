@@ -18,7 +18,9 @@
         .btn-nav { background: #2563eb; color: #ffffff; padding: 8px 18px; text-decoration: none; border-radius: 20px; font-weight: 600; font-size: 13px; }
         
         .section-wrap { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-        .section-wrap h2 { font-size: 24px; color: #0f172a; font-weight: 800; margin-bottom: 20px; text-align: left; border-left: 4px solid #2563eb; padding-left: 10px; }
+        
+        /* Centered Header Title Style */
+        .section-wrap h2 { font-size: 24px; color: #0f172a; font-weight: 800; margin-bottom: 20px; text-align: center; border-left: none; padding-left: 0; }
         
         /* Interactive Sticky Cart Bar */
         .sales-bar { background: #2563eb; color: white; padding: 15px 20px; border-radius: 12px; font-size: 16px; font-weight: bold; margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 80px; z-index: 900; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); }
@@ -54,8 +56,9 @@
         .btn-proceed { background: #2563eb; color: white; border: none; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 15px; text-align: center; width: 100%; transition: background 0.3s; }
         .btn-proceed:hover { background: #1d4ed8; }
 
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px; margin-bottom: 50px; }
-        .product-card { background: #ffffff; border-radius: 16px; border: 1px solid #e2e8f0; padding: 15px; text-align: left; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        /* Centered Grid Rules */
+        .product-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; margin-bottom: 50px; }
+        .product-card { background: #ffffff; border-radius: 16px; border: 1px solid #e2e8f0; padding: 15px; text-align: left; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); width: 280px; box-sizing: border-box; }
         .product-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 12px; }
         .tag { background: #fef08a; color: #854d0e; font-size: 11px; padding: 3px 8px; border-radius: 10px; font-weight: bold; display: inline-block; margin-bottom: 8px; }
         .tag.blue { background: #dbeafe; color: #1e40af; }
@@ -78,6 +81,7 @@
             .sales-bar { font-size: 14px; top: 195px; margin-bottom: 25px; flex-direction: column; gap: 10px; text-align: center; }
             .section-wrap h2 { font-size: 20px; text-align: center; }
             .cart-drawer { max-width: 100%; }
+            .product-card { width: 100%; }
         }
     </style>
 </head>
@@ -173,15 +177,15 @@
     </div>
 
     <!-- SECTION: METRIC & LENGTH CONVERTER UTILITY -->
-    <div class="section-wrap">
+    <div class="section-wrap" style="display: flex; flex-direction: column; align-items: center;">
         <h2>📦 Product Dimension & Unit Converter</h2>
-        <div style="background: #ffffff; padding: 25px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); max-width: 600px;">
-            <p style="color: #64748b; font-size: 13px; margin-top: 0;">Convert cable lengths, item specs, or package dimensions for your order:</p>
+        <div style="background: #ffffff; padding: 25px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); width: 100%; max-width: 600px; box-sizing: border-box;">
+            <p style="color: #64748b; font-size: 13px; margin-top: 0; text-align: center;">Convert cable lengths, item specs, or package dimensions for your order:</p>
             
             <div style="display: flex; flex-direction: column; gap: 15px;">
                 <div>
                     <label style="display: block; font-size: 12px; font-weight: 700; color: #64748b; margin-bottom: 6px; text-transform: uppercase;">Select Conversion</label>
-                    <select id="conversionType" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; background: #fff;">
+                    <select id="conversionType" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; background: #fff; box-sizing: border-box;">
                         <option value="cm_to_m">Centimeters (cm) ➔ Meters (m)</option>
                         <option value="km_to_m">Kilometers (km) ➔ Meters (m)</option>
                         <option value="kg_to_g">Kilograms (kg) ➔ Grams (g)</option>
